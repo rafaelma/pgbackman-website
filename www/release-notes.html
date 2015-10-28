@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+  <title>PgBackMan - PostgreSQL Backup Manager - Documentation</title>
+  <meta name="description" content="PgBackMan - PostgreSQL backup manager" />
+  <meta name="keywords" content="pgbackman backup postgresql pg_dump pg_dumpall manager" />
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery-1.4.3.min.js"></script>
+	<script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+	<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+	<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			*   Examples - images
+			*/
+
+			$("a#example1").fancybox();
+
+			$("a#example2").fancybox({
+				'overlayShow'	: false,
+				'transitionIn'	: 'elastic',
+				'transitionOut'	: 'elastic'
+			});
+
+			$("a#example3").fancybox({
+				'transitionIn'	: 'none',
+				'transitionOut'	: 'none'	
+			});
+
+			$("a#example4").fancybox({
+				'opacity'		: true,
+				'overlayShow'	: false,
+				'transitionIn'	: 'elastic',
+				'transitionOut'	: 'none'
+			});
+
+			$("a#example5").fancybox();
+
+			$("a#example6").fancybox({
+				'titlePosition'		: 'outside',
+				'overlayColor'		: '#000',
+				'overlayOpacity'	: 0.9
+			});
+
+			$("a#example7").fancybox({
+				'titlePosition'	: 'inside'
+			});
+
+			$("a#example8").fancybox({
+				'titlePosition'	: 'over'
+			});
+
+			/*
+			*   Examples - various
+			*/
+
+			$("#various1").fancybox({
+				'titlePosition'		: 'inside',
+				'transitionIn'		: 'none',
+				'transitionOut'		: 'none'
+			});
+
+			$("#various2").fancybox();
+
+			$("#various3").fancybox({
+				'width'				: '75%',
+				'height'			: '75%',
+				'autoScale'			: false,
+				'transitionIn'		: 'none',
+				'transitionOut'		: 'none',
+				'type'				: 'iframe'
+			});
+
+			$("#various4").fancybox({
+				'padding'			: 0,
+				'autoScale'			: false,
+				'transitionIn'		: 'none',
+				'transitionOut'		: 'none'
+			});
+		});
+	</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52322967-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="banner">
+	    <img src="images/pgbackman_logo.jpg"><a href="index.html">PostgreSQL Backup Manager</a>
+	  </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="index.html">Home</a></li>
+	  <li><a href="about.html">About</a></li>
+	  <li><a href="documentation.html">Docs</a></li>
+	   <li><a href="download.html">Download</a></li>
+	  <li><a href="support.html">Support</a></li>
+	  <li><a href="news.html">News</a></li>
+          <li><a href="about_pg_backup.html">About PG backups</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="site_content">
+      <div id="content">
+        <div class="content_item">
+	  <h1>Release notes</h1>
+
+	  <h2>Version 1.1.0</h2>
+
+	  <p>Date: 2015-10-28</p>
+	  <p>This new release implements some new features and fix
+	    some bugs from version 1.0.0.</p>
+	    
+	  <h3>New features</h3>
+	  <ul>
+	    <li>
+	      Add functionality to stop automatically all backup
+	      definitions for databases that have been deleted with
+	      DROP DATABASE or renamed in the PgSQL nodes running
+	      them.</br>
+	  
+	      The affected backup definitions will get a DELETED
+	      status and all files associated to the affected backup
+	      definitions will be kept only for the period of time
+	      defined by the automatic_deletion_retention parameter
+	      for the PgSQL node that was running the deleted
+	      database.</br>
+
+              The associated files will get deleted regardless of the
+              retention_period and retention_redundancy values for the
+              affected backup definitions.
+	    </li>
+
+	    <li>Possibility of pausing replication on slaves nodes
+		when taking backups of large databases to avoid the
+		termination of the backup process by postgreSQL.</li>
+		
+	    <li>Possibility of activating sending of alerts via SMTP
+		when a backup, snapshot or restore terminates with an
+		error message.</li>
+		
+	    <li>Overview of databases without backup definitions in
+		the PgSQL nodes registered in PgBackMan.</li>
+	    
+	    <li>Possibility of defining a backup definition in one run
+		for all databases in a PgSQL node without defined
+		backup definitions.</li>
+
+	    <li>More parameters available when searching for
+	      backups in the catalog.</li>
+	    
+	    <li>Possibility of viewing snapshots and restores in
+	    progress.</li>
+
+	    <li>Add the possibility to define the release version of
+		pg_dump / pg_dumpall to use when taking a backup of
+		type snapshot.</li>
+	    
+	    <li>Use PgSQL node and database information in the central
+		PgBackMan logfile.</li>
+
+	    <li>Automatic upgrade of the 'pgbackman' database to a new
+		version via the PgBackMan shell.</li>
+
+	  </ul>
+
+	  <h3>Migration to 1.1.0</h3>
+
+	  <p>It is very important to check the upgrade procedure to
+	    version 1.1.0 in the documentation to avoid problems and
+	    errors when and after upgrading to the new version.</p>
+
+	  <p>Check the documentation:</p>
+
+	  <ul>
+	    <li><strong>[All versions]:</strong> <a href="http://www.pgbackman.org/docs/">http://www.pgbackman.org/docs/</a></li>
+
+	    <li><strong>[English]:</strong> <a href="http://www.pgbackman.org/docs/pgbackman-manual-1.1.0.html">http://www.pgbackman.org/docs/pgbackman-manual-1.1.0.html</a></li>
+	    
+	    <li><strong>[Español]:</strong> <a href="http://www.pgbackman.org/docs/pgbackman-manual-1.1.0_es.html">http://www.pgbackman.org/docs/pgbackman-manual-1.1.0_es.html</a></li>
+	</ul>
+
+
+	<h3>Bugfixes</h3>
+	
+	<ul>
+	  <li>The parameter channel_check_interval is not
+	    supported. Update pgbackman command show_pgbackman_config
+	    to not show this information.</li>
+
+	  <li>Add dependency information for psycopg2. We need at
+	    least version 2.4 to avoid problems when executing
+	    pgbackman.</li>
+
+	  <li>Fix problems restoring backups with several almost
+	    identical roles that include each others.</li>
+
+	  <li>Include GRANT ... TO ... GRANTED BY .... statements in
+	    the roles backup file. We did not this if If they did not
+	    own something or had privileges in the database we were
+	    backing up</li>
+
+	  <li>Use copytruncate with logrotate to truncate the old log
+	    file after taken a copy.  We do not have functionality to
+	    tell pgbackman to close its logfile, therefor it continued
+	    writing (appending) to the previous log file forever.</li>
+
+	  <li>Change the default pg_dump / pg_restore format to
+	    directory. We need to use this format insteed of custom if
+	    we want to have the possibility of dumping data in
+	    parallel with pg_dump.</li>
+	  
+	  <li>Fix a problem when deleting a backup definition by
+	    dbname and having snapshots backups in our system. We delete data only
+	    from backup definitions and not snapshot definitions.</li>
+
+	  <li>Standardize the use of all/* values for some
+	    parameters. It was not used consistently.</li>
+
+	  <li>Delete /etc/pgbackman.conf as a configuration file
+	    possibility. Only /etc/pgbackman/pgbackman.log and
+	    $HOME/.pgbackman/pgbackman.conf are valid now, and the
+	    version under the home directory of the user running
+	    PgBackMan will have preference (if it exists) to the
+	    central configuration file.</li>
+
+	  <li>Fix that command inputs with only spaces crashed the
+	    pgbackman shell.</li>
+	</ul>
+
+
+	  <h2>Version 1.0.0</h2>
+
+	  <p>Date: 2014-06-26</p>
+	  <p>First version available to the public</p>
+
+	  <h3>Main features</h3>
+	  
+	  <ul>
+	  <li>Central database with metadata information.</li>
+	  <li>PgBackMan shell for interaction with the system.</li>
+	  <li>Management of multiple backup servers.</li>
+	  <li>Management of multiple PostgreSQL servers.</li>
+	  <li>Management of thousands of backups dumps through a catalogue.</li>
+	  <li>Manual and scheduled backups.</li>
+	  <li>Management of retention policies for backups.</li>
+	  <li>Fully detailed backup reports.</li>
+	  <li>Multiple predefined database backup types, CLUSTER,FULL,SCHEMA,DATA.</li>
+	  <li>Full backup of role information for a database.</li>
+	  <li>Full backup of database configuration for a database.</li>
+	  <li>Automatic definitions of backups for all databases running in a PgSQL node.</li>
+	  <li>Automatic restore procedures.</li>
+	  <li>Autonomous pgbackman_dump program that functions even if the central database with metadata information is not available.</li>
+	  <li>Handling of error situations.</li>
+	  </ul>
+
+	</div>
+      </div>
+      <div class="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h2>Contact</h2>
+	    <h3><span style="color: #444; width: 55px;float: left;">Email:</span><a style="color: #06C4E6;" href="mailto:pgbackman@googlegroups.com">pgbackman@googlegroups.com</a></h3>
+            <a href="http://twitter.com/pgbackman"><img src="images/icons/twitter.png" alt="twitter" /></a><a href="http://github.com/rafaelma/pgbackman/"><img src="images/icons/github2.png" alt="github" /></a><a href="https://groups.google.com/forum/feed/pgbackman/topics/rss.xml?num=15"><img src="images/icons/rss.png" alt="RSS" /></a>
+
+	  </div>
+          <div class="sidebar_base"></div>
+        </div>
+       
+      </div>
+    </div>
+    <div id="footer">
+      Copyright © 2013-2015 by <a href="http://www.usit.uio.no/english/about/organisation/it-drift/gd/gid/staff/rafael/index.html">Rafael Martinez Guerrero</a> / <a href="http://www.postgresql.org.es"/>PostgreSQL-es</a>.<br>Website based on template by <a href="http://www.araynordesign.co.uk">ARaynorDesign</a> 
+    </div>
+  </div>
+  <p style="float: left;padding: 0;">&nbsp;</p>
+</body>
+</html>
+
+
+

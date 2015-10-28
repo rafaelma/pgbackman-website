@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
 <head>
-  <title>PgBackMan - PostgreSQL Backup Manager - About</title>
+  <title>PgBackMan - PostgreSQL Backup Manager - Documentation</title>
   <meta name="description" content="PgBackMan - PostgreSQL backup manager" />
   <meta name="keywords" content="pgbackman backup postgresql pg_dump pg_dumpall manager" />
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
@@ -93,7 +93,6 @@
   ga('send', 'pageview');
 
 </script>
-
 </head>
 
 <body>
@@ -117,60 +116,96 @@
     <div id="site_content">
       <div id="content">
         <div class="content_item">
-	  <h1>About PgBackMan</h1>
-	  <div style="float:left; border: 2px solid #CCC; margin-right: 10px; padding: 5px;"><img src="images/Basic-Search-icon.png"/></div> 
+	  <h1>News</h1>
 
-	  <h4>What is PgBackMan?</h4>
-	  
-	  <p>PgBackMan is a tool for managing PostgreSQL logical
-	    backups created with <tt>pg_dump</tt>
-	    and <tt>pg_dumpall</tt>.</p>
-	  
-	  <p>It is designed to manage backups from thousands of
-	    databases running in multiple PostgreSQL nodes, and it
-	    supports a multiple backup server topology.</p>
+	  <h2>October 2015 - New version has been released</h2>
 
-	  <p>It also manages role and database configuration
-	    information when creating a backup of a database. This
-	    information is necessary to ensure a 100% restoration of a
-	    logical backup of a database and the elements associated
-	    to it.</p>
-	  
-	  <p>PgBackMan is not a tool for managing PITR (Point in time
-	    recovery) backups. There are several other solutions that
-	    can be used for managing PITR backups, such as PITRTools,
-	    OmniPITR, and Barman.</p>
+	  <p>A new release is available with many new features and bugfixes</p>
 
-	  <h4>Main Features</h4>
+	  <h3>Main features</h3>
 
 	  <ul>
-	    <li>Central database with metadata information.</li>
-	    <li>PgBackMan shell for interaction with the system.</li>
-	    <li>Management of multiple backup servers.</li>
-	    <li>Management of multiple PostgreSQL servers.</li>
-	    <li>Management of thousands of backups dumps through a catalogue.</li>
-	    <li>Manual and scheduled backups.</li>
-	    <li>Management of retention policies for backups dumps.</li>
-	    <li>Fully detailed backup reports.</li>
-	    <li>Multiple predefined database backup types, CLUSTER, FULL, SCHEMA, DATA.</li>
-	    <li>Full backup of role information for a database.</li>
-	    <li>Full backup of database configuration for a database.</li>
-	    <li>Automatic definitions of backups for all databases running in a PgSQL node.</li>
-	    <li>Automatic definitions of backups for all databases without definitions in a PgSQL node.</li>
-	    <li>Automatic deletion after a quarantine period of backup definitions and associated files for databases than have been deleted in a PgSQL node.</li>
-	    <li>Possibility of pausing / resuming replication on slaves/standby nodes when taking large backups.</li>
-	    <li>Automatic restore procedures.</li>
-	    <li>Autonomous pgbackman_dump program that functions even if the central database with metadata is not available.</li>
-	    <li>Possibility of sending alerts via SMTP when an error happens.</li>
-	    <li>Handling of error situations.</li>
-	    <li>Written in Python and PL/PgSQL </li>
-	  </ul>
-	  
-	  <h4>License</h4>
+	    <li>Add functionality to stop automatically all backup
+	      definitions for databases that have been deleted with
+	      DROP DATABASE or renamed in the PgSQL nodes running
+	      them.</li>
 
-	  <p>PgBackMan is the property of Rafael Martinez Guerrero /
-	  PostgreSQL-es and the University of Oslo, and its code is
-	  distributed under GNU General Public License 3.</p>
+	    <li>Possibility of pausing replication on slaves nodes
+	      when taking backups of large databases to avoid the
+	      termination of the backup process by postgreSQL.</li>
+
+	    <li>Possibility of activating sending of alerts via SMTP
+	      when a backup, snapshot or restore terminates with an
+	      error message.</li>
+
+	    <li>Overview of databases without backup definitions in the PgSQL nodes
+	      registered in PgBackMan.</li>
+
+	    <li>Possibility of viewing snapshots and restores in
+	    progress.</li>
+
+	    <li>Automatic upgrade of the 'pgbackman' database to a new
+	      version via the PgBackMan shell.</li>
+	  </ul>
+
+	  <p>For a full overview of all changes, check the  
+	  <a href="release-notes.html">release notes page</a></p>
+
+
+	  <h2>August 2014 - PgBackMan manual translated to spanish</h2>
+
+	  <p>The spanish translation of the PgBackMan manual has been
+	  released and is available from this website and GitHub.</p>
+
+	  <h2>June 2014 - First version available to the public has been released</h2>
+
+
+	  <p>We are proud to announce the first release available to
+	  the public of PgBackMan - PostgreSQL backup manager.</p>
+
+	  <ul>
+	    <li><b>Website:</b> <a href="http://www.pgbackman.org/">http://www.pgbackman.org/</a></li>
+	    <li><b>Documentation:</b> <a herf="http://www.pgbackman.org/pgbackman-manual-1.0.0.html">http://www.pgbackman.org/pgbackman-manual-1.0.0.html</a></li>
+	    <li><b>Twitter:</b> <a href="https://twitter.com/pgbackman">https://twitter.com/pgbackman</a></li>
+	    <li><b>GitHub:</b> <a href="https://github.com/rafaelma/pgbackman/">https://github.com/rafaelma/pgbackman/</a></li>
+	  </ul>  
+
+	  <h3>About PgBackMan</h3>
+
+	  <p>PgBackMan is a tool for managing PostgreSQL logical
+	  backups created with pg_dump and pg_dumpall.</p>
+
+	  <p>It is designed to manage backups from thousands of
+	  databases running in multiple PostgreSQL nodes, and it
+	  supports a multiple backup server topology.</p>
+
+	  <p>The PgBackMan code is distributed under the GNU General
+	  Public License 3 and it is written in Python and
+	  PL/PgSQL. It has been developed and tested by members of the
+	  Database Operations Group at the Center for Information
+	  Technology at the University of Oslo.</p>
+
+	  <h3>Main Features</h3>
+
+	  <ul>
+	  <li>Central database with metadata information.</li>
+	  <li>PgBackMan shell for interaction with the system.</li>
+	  <li>Management of multiple backup servers.</li>
+	  <li>Management of multiple PostgreSQL servers.</li>
+	  <li>Management of thousands of backups dumps through a catalogue.</li>
+	  <li>Manual and scheduled backups.</li>
+	  <li>Management of retention policies for backups.</li>
+	  <li>Fully detailed backup reports.</li>
+	  <li>Multiple predefined database backup types, CLUSTER,FULL,SCHEMA,DATA.</li>
+	  <li>Full backup of role information for a database.</li>
+	  <li>Full backup of database configuration for a database.</li>
+	  <li>Automatic definitions of backups for all databases running in a PgSQL node.</li>
+	  <li>Automatic restore procedures.</li>
+	  <li>Autonomous pgbackman_dump program that functions even if
+	  the central database with metadata information is not
+	  available.</li>
+	  <li>Handling of error situations.</li>
+	  </ul>
 
 	</div>
       </div>
@@ -179,9 +214,10 @@
           <div class="sidebar_top"></div>
           <div class="sidebar_item">
             <h2>Contact</h2>
-            <h3><span style="color: #444; width: 55px;float: left;">Email:</span><a style="color: #06C4E6;" href="mailto:pgbackman@googlegroups.com">pgbackman@googlegroups.com</a></h3>
+	    <h3><span style="color: #444; width: 55px;float: left;">Email:</span><a style="color: #06C4E6;" href="mailto:pgbackman@googlegroups.com">pgbackman@googlegroups.com</a></h3>
             <a href="http://twitter.com/pgbackman"><img src="images/icons/twitter.png" alt="twitter" /></a><a href="http://github.com/rafaelma/pgbackman/"><img src="images/icons/github2.png" alt="github" /></a><a href="https://groups.google.com/forum/feed/pgbackman/topics/rss.xml?num=15"><img src="images/icons/rss.png" alt="RSS" /></a>
-          </div>
+
+	  </div>
           <div class="sidebar_base"></div>
         </div>
        
